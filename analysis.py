@@ -36,5 +36,5 @@ iris_species(4,petalWidth)
 plt.scatter (sepalLength,sepalwidth)
 plt.show()
 
-# The species need to be linked together somehow in a dict and each specie plotted seperately.  Need to do more research on
+# The speicies need to be linked together somehow in a dict and each specie plotted seperately.  Need to do more research on
 # exploration and visualisation. 
