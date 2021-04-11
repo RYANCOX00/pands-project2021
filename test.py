@@ -30,6 +30,7 @@ versicolor = gp.get_group('Iris-versicolor')
 virginica = gp.get_group('Iris-virginica')
 
 
+    
 species = (df['Species'].unique())
 species = [i.replace("Iris-", "").capitalize() for i in species]
 the_species = print ("The species of Irish flower are being analysed are: ", *species, sep = "\n")
@@ -52,6 +53,7 @@ print(versicolor.describe())
 
 print("\nA summary of the Virginica species")
 print(virginica.describe())
+
 
 
 

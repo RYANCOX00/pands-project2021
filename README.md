@@ -1,12 +1,12 @@
 # pands-project2021
 
-Fisher's Iris data was a statisical study of three speicies of the Iris plant.  50 flowers of the setosa, versicolor, and virginica species were each measured totaling 150 samples.   Four features of each flower was measured: the length of the sepals; width of the sepals; lenght of the petals; and width of the petal, respectively in that order.  
+Fisher's Iris data was a statisical study of three species of the Iris plant.  50 flowers of the setosa, versicolor, and virginica species were each measured totaling 150 samples.   Four features of each flower was measured: the length of the sepals; width of the sepals; lenght of the petals; and width of the petal, respectively in that order.  
 https://pythonhosted.org/bob/temp/bob.db.iris/doc/example.html
 
 
 SUMMARY OF CODE DEVELOPMENT
 
-In relation to opening the file, I am currently using the Python open file function.  I might change this to PANDAS.  This will make the extraction of speicies more efficient as discussed above. 
+In relation to opening the file, I am currently using the Python open file function.  I might change this to PANDAS.  This will make the extraction of species more efficient as discussed above. 
 
 I created empty lists for the raw data can be extracted to.  I originally done this by the feature of the species but ran into trouble later when designing my pilot code (unable to seperate by species when plotting).   I then decided it would be best to extract by way of species themselves using a for loop and == "the species" eg. if row[4] == "Iris-setosa":.
 
