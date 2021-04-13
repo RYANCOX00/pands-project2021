@@ -2,7 +2,7 @@ There is no missing values in this data set.
 
 The species of Iris flower are being analysed are: Setosa, Versicolor, Virginica
 
-Full summary of all the Iris species:
+A summary of all the Iris species:
        Sepal Lenght  Sepal Width  Petal Lenght  Petal Width
 count    150.000000   150.000000    150.000000   150.000000
 mean       5.843333     3.054000      3.758667     1.198667
@@ -37,11 +37,11 @@ max        7.000000     3.400000      5.100000     1.800000
 
 A summary of the Virginica species:
        Sepal Lenght  Sepal Width  Petal Lenght  Petal Width
-count      50.00000    50.000000     50.000000     50.00000
-mean        6.58800     2.974000      5.552000      2.02600
-std         0.63588     0.322497      0.551895      0.27465
-min         4.90000     2.200000      4.500000      1.40000
-25%         6.22500     2.800000      5.100000      1.80000
-50%         6.50000     3.000000      5.550000      2.00000
-75%         6.90000     3.175000      5.875000      2.30000
-max         7.90000     3.800000      6.900000      2.50000
+count     50.000000    50.000000     50.000000    50.000000
+mean       5.936000     2.770000      4.260000     1.326000
+std        0.516171     0.313798      0.469911     0.197753
+min        4.900000     2.000000      3.000000     1.000000
+25%        5.600000     2.525000      4.000000     1.200000
+50%        5.900000     2.800000      4.350000     1.300000
+75%        6.300000     3.000000      4.600000     1.500000
+max        7.000000     3.400000      5.100000     1.800000

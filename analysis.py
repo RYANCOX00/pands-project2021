@@ -6,17 +6,42 @@ import matplotlib.pyplot as plt
 import csv
 import pandas as pd
 
+# defining the files and lists to be used in code. 
 irisFile = "iris_csv.csv"
 summaryFile = "species_summary.txt"
+summary = []    # appending summary data to list for pushing to summary file later.  
+                # needed to do this way as variable would over write the summary file otherwise
 
 
-def writing_to_summary(summary):
-    with open (summaryFile, "at") as f:
-        f.write(str(summary))
+# Creating the functions that will be used in the code.  
 
+# Function to write to summary text file.
+def writing_to_summary(summary):   # pushing summary data to summary file 
+    with open (summaryFile, "wt") as f: #in write mode so not added everytime its ran
+        for contents in summary:  # as a for loop so contents of list uploaded seperately and not as a list itself. 
+            f.write(str(contents))
 
+# Function to create histograms
+def hist(feature, colour, title): 
+    plt.hist(feature, color = colour, edgecolor = "black")
+    plt.ylabel("Frequency", fontsize = 14, weight ="bold")
+    plt.xlabel(title +" in cm", fontsize = 14, weight ="bold")
+    plt.title("Frequency of "+ title, fontsize=18, weight = "bold")
+    plt.show()
+
+# Function to create scatter plots
+# use sample code below to create function here 
+
+# Reading in file from Pandas
 df = pd.read_csv(irisFile) # changed reading in the file to Pandas. Below variables also changed.
 df.columns = ["Sepal Lenght", "Sepal Width", "Petal Lenght", "Petal Width","Species"]
+
+
+# creating variables for the different species of Iris
+gp = df.groupby("Species")
+setosa = gp.get_group('Iris-setosa')
+versicolor = gp.get_group('Iris-versicolor')
+virginica = gp.get_group('Iris-virginica')
 
 
 #Checking for missing value
@@ -24,13 +49,7 @@ null_values = df.isnull().values.any() #Delft Stack
 if null_values == False:
     print("\nThere is no missing values in this data set.") # optional for now, main purpose to the output to summary file.
     no_null = "There is no missing values in this data set."
-    writing_to_summary(no_null)
-
-
-gp = df.groupby("Species")
-setosa = gp.get_group('Iris-setosa')
-versicolor = gp.get_group('Iris-versicolor')
-virginica = gp.get_group('Iris-virginica')
+    summary.append(no_null)  #appending summary data to list for pushing to summary file later. 
 
 
 # Find unique species and saving as a list. Manipulating the list to drop the "Iris-" and capitalize each species. 
@@ -39,45 +58,51 @@ species = (df['Species'].unique())
 species = [i.replace("Iris-", "").capitalize() for i in species]
 text = "\n\nThe species of Iris flower are being analysed are: "
 species1 = ", ".join(map(str, species)) # joining the contents of the list as a string with ", " as the seperator. 
-species_output = (text + species1)
-writing_to_summary(species_output)
+species_output = (text + species1) # adding both strings for output variable.
+summary.append(species_output) 
 print(species_output)
-
-
 
 
 ## May want to run other stats # bar chart for the total sample of each i.e. 50/50/50?
 
-full_summary_text = ("\n\nFull summary of all the Iris species:\n")
+## Below running .describe() and pushing summary list and subsequently to summary file
+full_summary_text = ("\n\nA summary of all the Iris species:\n")
 full_summary = df.describe() 
-writing_to_summary(full_summary_text)
-writing_to_summary(full_summary)
-print("\nFull summary has been written to text file.")
-
+summary.append(full_summary_text)
+summary.append(full_summary)
+print("\nA summary of all species has been written to text file in a single data frame.")
 
 setosa_summary_text = ("\n\nA summary of the Setosa species:\n") 
 setosa_summary = setosa.describe()
-writing_to_summary(setosa_summary_text)
-writing_to_summary(setosa_summary)
-print("\nSetosa summary has been written to text file.")
-
+summary.append(setosa_summary_text)
+summary.append(setosa_summary)
+print("\nA summary of the Setosa species has been written to text file in a single data frame.")
 
 versicolor_summary_text = ("\n\nA summary of the Versicolor species:\n") 
 versicolor_summary = versicolor.describe()
-writing_to_summary(versicolor_summary_text)
-writing_to_summary(versicolor_summary)
-print("\nVersicolor summary has been written to text file.")
-
+summary.append(versicolor_summary_text)
+summary.append(versicolor_summary)
+print("\nA summary of the Versicolor species has been written to text file in a single data frame.")
 
 virginica_summary_text = ("\n\nA summary of the Virginica species:\n") 
 virginica_summary = virginica.describe()
-writing_to_summary(virginica_summary_text)
-writing_to_summary(virginica_summary)
-print("\nVirginica summary has been written to text file.")
+summary.append(virginica_summary_text)
+summary.append(versicolor_summary)
+print("\nA summary of the Virginica species has been written to text file in a single data frame.")
+
+writing_to_summary(summary) # calling the function as pushing to summary file.  
 
 
-## Better plotting  # Indexing the Data Frame instead of creating many variables. 
-## will be best to create a function for these plots rather than writing below out many times. 
+#histogram  from function hist()
+hist(df["Sepal Lenght"], "red", "Sepal Lenght (All Species)")
+hist(df["Sepal Width"], "yellow", "Sepal Width (All Species)")
+hist(df["Petal Lenght"], "green", "Petal Lenght (All Species)")
+hist(df["Petal Width"], "orange", "Petal Width (All Species)")
+
+
+
+# Scatter plot sample
+# need to create function for these as done with hist
 plt.scatter(setosa["Sepal Lenght"], setosa["Sepal Width"] , color = "red")
 plt.scatter(versicolor["Sepal Lenght"], versicolor["Sepal Width"], color = "yellow")
 plt.scatter(virginica["Sepal Lenght"], virginica["Sepal Width"], color = "green")
