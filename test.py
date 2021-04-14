@@ -12,7 +12,7 @@ irisFile = "iris_csv.csv"
 summaryFile = "species_summary.txt"
 summary = []    # appending summary data to list for pushing to summary file later.  
                 # needed to do this way as variable would over write the summary file otherwise
-hist_data = []
+
 
 
 # Creating the functions that will be used in the code.  
@@ -25,23 +25,16 @@ def writing_to_summary(summary):   # pushing summary data to summary file
 
 
 # histogram from function hist() # with species breakdown
-#def hist_species(feature):
-    #palette = {"Setosa": "green", "Versicolor":"yellow", "Virginica": "orange"}
-    #sns.set_style("darkgrid")
-   # hist = sns.pairplot(x = feature, data = df, hue= "Species", multiple= "stack", palette=palette)
-   # hist.set_axis_labels(feature + "in cm","Frequency",fontsize = 14, weight ="bold")
-    
-
-def hist (feature, count):
-    fig, axes = plt.subplots(2, 2, figsize=(15, 5), sharey=True)
+def hist_species(feature):
     palette = {"Setosa": "green", "Versicolor":"yellow", "Virginica": "orange"}
     sns.set_style("darkgrid")
-    fig.suptitle('test')
-    hist =sns.histplot(ax=axes[count], x=feature, data = df, hue= "Species", multiple= "stack", palette=palette)
-    #hist.set_axis_labels(feature + "in cm","Frequency",fontsize = 14, weight ="bold")
-    axes[count].set_title(feature)
-    fig.tight_layout()
+    sns.displot(x = feature, data = df, hue= "Species", multiple= "stack", palette=palette)
+    plt.ylabel("Frequency", fontsize = 14, weight ="bold")
+    plt.xlabel(feature +" in cm", fontsize = 14, weight ="bold")
+    plt.title(feature + " by Species", fontsize=18, weight = "bold")
     plt.show()
+
+
 
 # Function to create scatter plots
 # use sample code below to create function here 
@@ -108,30 +101,14 @@ writing_to_summary(summary) # calling the function and pushing to summary file.
 
 
 
-# Histograms from the function hist with species breakdown by hue.   # function wont work as they plot on seperate figures.
-#hist("Sepal Lenght", (0,0))
-#hist("Sepal Width", (0,1))
-#hist("Petal Lenght", (1,0))
-#hist("Petal Width", (1,1))
-
-hist_list = {"Sepal Lenght": (0,0), "Sepal Width" : (0,1), "Petal Lenght": (1,0), "Petal Width":(1,1)}
-
-sns.set(style="darkgrid")
-fig, axes = plt.subplots(2, 2, figsize=(15, 8), sharey=True) # sharey =true keeps the y axix labels the same 
-palette = {"Setosa": "green", "Versicolor":"yellow", "Virginica": "orange"}
-fig.suptitle('Iris Features Measurements', fontsize = 20, weight= "bold")
-for key, value in hist_list.items(): # running the plot as a for loop with the plt.show() outside the for loop
-    hist =sns.histplot(ax=axes[value], x=key, data = df, hue= "Species", multiple= "stack", palette=palette, edgecolor= 'black')
-    hist.set_xlabel(key + " in cm", fontsize = 14) 
-    hist.set_ylabel("Frequency", fontsize = 14)
-    fig.tight_layout()
-plt.show()
+# Histograms from the function hist_species with species breakdown by hue.
+#hist_species("Sepal Lenght")
+#hist_species("Sepal Width")
+#hist_species("Petal Lenght")
+#hist_species("Petal Width")
 
 
 
-#sns.pairplot(df, hue = 'Species', diag_kind = 'hist') # consider changing the diag_kind
-#plot_kws = {'multiple':'stack', 'palette': 'palette'})
-#plt.show()
 
 # Scatter plot sample
 # need to create function for these as done with hist
@@ -139,6 +116,7 @@ plt.show()
 #plt.scatter(versicolor["Sepal Lenght"], versicolor["Sepal Width"], color = "yellow")
 #plt.scatter(virginica["Sepal Lenght"], virginica["Sepal Width"], color = "green")
 #plt.show()
-
+#
+#
 #sns.displot(data=df["Sepal Lenght"])
 #plt.show()
