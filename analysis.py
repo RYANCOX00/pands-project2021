@@ -3,6 +3,7 @@
 
 import numpy as np 
 import matplotlib.pyplot as plt
+import seaborn as sns
 import csv
 import pandas as pd
 
@@ -21,13 +22,26 @@ def writing_to_summary(summary):   # pushing summary data to summary file
         for contents in summary:  # as a for loop so contents of list uploaded seperately and not as a list itself. 
             f.write(str(contents))
 
-# Function to create histograms
-def hist(feature, colour, title): 
-    plt.hist(feature, color = colour, edgecolor = "black")
+# histogram from function hist() # without species breakdown
+def hist(feature, species, colour, species_title): 
+    sns.set_style("darkgrid")
+    sns.displot(x= feature, data = species, color = colour)
     plt.ylabel("Frequency", fontsize = 14, weight ="bold")
-    plt.xlabel(title +" in cm", fontsize = 14, weight ="bold")
-    plt.title("Frequency of "+ title, fontsize=18, weight = "bold")
+    plt.xlabel(feature +" in cm", fontsize = 14, weight ="bold")
+    plt.title(species_title, fontsize=18, weight = "bold")
     plt.show()
+
+
+# histogram from function hist() # with species breakdown
+def hist_species(feature):
+    palette = {"Setosa": "green", "Versicolor":"yellow", "Virginica": "orange"}
+    sns.set_style("darkgrid")
+    sns.displot(x = feature, data = df, hue= "Species", multiple= "stack", palette=palette)
+    plt.ylabel("Frequency", fontsize = 14, weight ="bold")
+    plt.xlabel(feature +" in cm", fontsize = 14, weight ="bold")
+    plt.title(feature + " by species", fontsize=18, weight = "bold")
+    plt.show()
+
 
 # Function to create scatter plots
 # use sample code below to create function here 
@@ -52,10 +66,10 @@ if null_values == False:
     summary.append(no_null)  #appending summary data to list for pushing to summary file later. 
 
 
-# Find unique species and saving as a list. Manipulating the list to drop the "Iris-" and capitalize each species. 
+# Manipulating the list to drop the "Iris-" and capitalize each species. The finding unique species and saving as a list.
 # Outputting to the user the type of Iris species added to a string. 
+df["Species"] = [i.replace("Iris-", "").capitalize() for i in df["Species"]]
 species = (df['Species'].unique()) 
-species = [i.replace("Iris-", "").capitalize() for i in species]
 text = "\n\nThe species of Iris flower are being analysed are: "
 species1 = ", ".join(map(str, species)) # joining the contents of the list as a string with ", " as the seperator. 
 species_output = (text + species1) # adding both strings for output variable.
@@ -93,17 +107,30 @@ print("\nA summary of the Virginica species has been written to text file in a s
 writing_to_summary(summary) # calling the function as pushing to summary file.  
 
 
-#histogram  from function hist()
-hist(df["Sepal Lenght"], "red", "Sepal Lenght (All Species)")
-hist(df["Sepal Width"], "yellow", "Sepal Width (All Species)")
-hist(df["Petal Lenght"], "green", "Petal Lenght (All Species)")
-hist(df["Petal Width"], "orange", "Petal Width (All Species)")
+#histogram from function hist() # without species breakdown
+#hist("Sepal Lenght", df, "red", "All Species")
+#hist("Sepal Width", df, "yellow", "All Species")
+#hist("Petal Lenght", df, "green", "All Species")
+#hist("Petal Width", df, "orange", "All Species")
+
+
+#sns.displot(x= "Sepal Lenght", data = df, hue="Species", multiple="stack")
+hist_species("Sepal Lenght")
+hist_species("Sepal Width")
+hist_species("Petal Lenght")
+hist_species("Petal Width")
+
 
 
 
 # Scatter plot sample
 # need to create function for these as done with hist
-plt.scatter(setosa["Sepal Lenght"], setosa["Sepal Width"] , color = "red")
-plt.scatter(versicolor["Sepal Lenght"], versicolor["Sepal Width"], color = "yellow")
-plt.scatter(virginica["Sepal Lenght"], virginica["Sepal Width"], color = "green")
-plt.show()
+#plt.scatter(setosa["Sepal Lenght"], setosa["Sepal Width"] , color = "red")
+#plt.scatter(versicolor["Sepal Lenght"], versicolor["Sepal Width"], color = "yellow")
+#plt.scatter(virginica["Sepal Lenght"], virginica["Sepal Width"], color = "green")
+#plt.show()
+#
+#
+#sns.displot(data=df["Sepal Lenght"])
+#plt.show()
+

@@ -37,6 +37,13 @@ Its pushed in one go and not overwritten by the last variable.  *** summary file
 
 # Plotting
 I have taken the approach to index the dataframe of each species to plot the required data. 
+This was on Matplotlip.  I have subsequently changed to seaborn.  Dataframe and columns are inputted seperately. 
+First I created a histplot with plots and  labels/ font. 
+Once I got it working I created my own function so that I could run plots for the different features.
+I then decided to use a hue, so that the categories could be told apart on the plot.  
+I also included a color palatte and 'darkgrid' background. 
+
+
 
 histogram 
 do a total for the 4 features 
