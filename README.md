@@ -34,6 +34,12 @@ However, if I change to write, only the last variable is pushed to the summary f
 If I append all the variables to a list and add the contents of a list as a for loop it fixed this. 
 Its pushed in one go and not overwritten by the last variable.  *** summary file fixed and in correct mode ***
 
+I have amended the method to summaries the data.  No point in providing a summary of the individual species on seperate dataframes.  Difficult to compare has serves little purpose the way it is. 
+Instead I have summarised with the species grouped and the features of the flowers compared. 
+Done by using this function, however I had to set the columns as the data was outputing incorrectly.  pd.options.display.max_columns = 999
+species_summary = (df.groupby('Species').describe())
+
+
 
 # Plotting
 I have taken the approach to index the dataframe of each species to plot the required data. 
@@ -42,11 +48,18 @@ First I created a histplot with plots and  labels/ font.
 Once I got it working I created my own function so that I could run plots for the different features.
 I then decided to use a hue, so that the categories could be told apart on the plot.  
 I also included a color palatte and 'darkgrid' background. 
-
-
-
+# UPDATE ON PLOTTING :
 histogram 
-do a total for the 4 features 
+Plan to do a total for the 4 features  and do 4 features again with the the frequesncy of each species
+*** Unable to use a function to plot the histograms and with the subplot method, the plots were going onto seperate figures.  
+I had to create a dict and do a for loop to plot 4 hostograms on one main plot. 
+No need to create my own funtion as it was handy enough to do a for loop and keep the same specs
 
-and do 4 features again with the the frequesncy of each species
+With scatter plots, I done a Pairplot so all scatter plots are plotted as sub plots on one main plot. 
 
+Consider changing to normal scatter plots and using (0,2) in a sub plot format. 
+Use the bubble size as frequency?  
+
+# TO DO:
+Need to save plots as pngs. 
+Write the read me file and researach summary / report. 
