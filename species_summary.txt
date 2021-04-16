@@ -1,5 +1,5 @@
 
-The species of Iris flower are being analysed are: Setosa, Versicolor, Virginica
+The species of Iris flower being analysed are: Setosa, Versicolor, Virginica
 
 There is no missing values in this data set.
 
@@ -14,7 +14,7 @@ min        4.300000     2.000000      1.000000     0.100000
 75%        6.400000     3.300000      5.100000     1.800000
 max        7.900000     4.400000      6.900000     2.500000
 
-A summary of each flower feature across the different species: 
+A summary of each flower features across the different species: 
            Sepal Lenght                                              \
                   count   mean       std  min    25%  50%  75%  max   
 Species                                                               

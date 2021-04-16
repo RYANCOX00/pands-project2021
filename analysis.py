@@ -10,12 +10,8 @@ import pandas as pd
 # defining the files and lists to be used in code. 
 irisFile = "iris_csv.csv"
 summaryFile = "species_summary.txt"
-summary = []    # appending summary data to list for pushing to summary file later.  
-                # needed to do this way as variable would over write the summary file otherwise
-
-
-
-# Creating the functions that will be used in the code.  
+summary = []    # appending summary data to list for pushing to summary file in one go later.  
+               
 
 # Function to write to summary text file.
 def writing_to_summary(summary):   # pushing summary data to summary file 
@@ -29,12 +25,12 @@ df = pd.read_csv(irisFile) # changed reading in the file to Pandas. Below variab
 df.columns = ["Sepal Lenght", "Sepal Width", "Petal Lenght", "Petal Width","Species"]
 
 
-# Manipulating the list to drop the "Iris-" and capitalize each species. The finding unique species and saving as a list.
+# Manipulating the list to drop the "Iris-" and capitalize each species. Then finding unique species and saving as a list.
 # Outputting to the user the type of Iris species added to a string. 
 df["Species"] = [i.replace("Iris-", "").capitalize() for i in df["Species"]]
 species = (df['Species'].unique()) 
-text = "\nThe species of Iris flower are being analysed are: "
 species1 = ", ".join(map(str, species)) # joining the contents of the list as a string with ", " as the seperator. 
+text = "\nThe species of Iris flower being analysed are: "
 species_output = (text + species1) # adding both strings for output variable.
 summary.append(species_output) 
 print(species_output)
@@ -48,52 +44,49 @@ if null_values == False:
     summary.append(no_null)  #appending summary data to list for pushing to summary file later. 
 
 
-# Grouping species and creating variables for the different species of Iris
-# No need for these anymore as the the summary obtained differently.
-#gp = df.groupby("Species")
-#setosa = gp.get_group('Setosa')
-#versicolor = gp.get_group('Versicolor')
-#virginica = gp.get_group('Virginica')
 
-
-# Below running .describe() and pushing summary list and subsequently to summary file
+# Summarising data
 full_summary_text = ("\n\nA summary of all the Iris species:\n")
-full_summary = df.describe() 
-summary.append(full_summary_text)
+full_summary = df.describe()  # an overview of the Iris data using .describe().  No breakdown of species yet. 
+summary.append(full_summary_text) # appending to summary list. (Later to summary file)
 summary.append(full_summary)
 print("\nA summary of all species has been written to the summary file in a single data frame.")
 
 
-species_summary_text = "\n\nA summary of each flower feature across the different species: \n"
+# Comparing the features across the species
+species_summary_text = "\n\nA summary of each flower features across the different species: \n"
 summary.append(species_summary_text) # Appending a text heading to the summary dataframe to the summary file.
 pd.options.display.max_columns = 999  # Setting the max columns so that the summary of the features output directly under one another. 
 species_summary = (df.groupby('Species').describe())  # Outputing a summary of the features and comparison across the species, using the groupby() function and the .describe() function.
 summary.append(species_summary)
-print("\nA summary of the flower features and comparison across the species has been written to the summary file. ")
+print("\nA comparison of the features across the species has been written to the summary file. ")
 
 writing_to_summary(summary) # calling the function and pushing to summary file.  
 
 
-# Plotting the histogram as subplots on one plot. Can't plot within my own function as they plot seperately. 
 
-hist_dict = {"Sepal Lenght": (0,0), "Sepal Width" : (0,1), "Petal Lenght": (1,0), "Petal Width":(1,1)}
-palette = {"Setosa": "green", "Versicolor":"yellow", "Virginica": "orange"}
+# Plotting 
+# Creating a color scheme for the species to be used across the plots.
+palette = {"Setosa": "green", "Versicolor":"yellow", "Virginica": "orange"} 
 
+# Saving the features to be plotted and their position on the subplots as a dict. (for histogram plotting) 
+hist_dict = {"Sepal Lenght": (0,0), "Sepal Width" : (0,1), "Petal Lenght": (1,0), "Petal Width":(1,1)} 
 
-sns.set(style="darkgrid")
-fig, axes = plt.subplots(2, 2, figsize=(15, 8), sharey=True) # sharey =true keeps the y axix labels the same #may want to remove for easier reading of plot
-fig.suptitle('Iris Features Measurements', fontsize = 28, weight= "bold")
-for key, value in hist_dict.items(): # running the plot as a for loop with the plt.show() outside the for loop
-    hist =sns.histplot(ax=axes[value], x=key, data = df, hue= "Species", multiple= "stack", palette=palette, edgecolor= 'black') 
-    hist.set_xlabel(key + " in cm", fontsize = 14) 
-    hist.set_ylabel("Frequency", fontsize = 14)
-    fig.tight_layout()
+# Histogram
+sns.set(style="darkgrid") # setting the background of the mainplot. 
+fig, axes = plt.subplots(2, 2, figsize=(15, 8), sharey=True) # creating the subplot to be 2x2 and size.  sharey =true keeps the y axix labels the same #may want to remove for easier reading of plot
+fig.suptitle('Iris Features Measurements', fontsize = 28, weight= "bold") #setting the title of the plot/ 
+for key, value in hist_dict.items(): # plots are from a for loop. 
+    hist =sns.histplot(ax=axes[value], x=key, data = df, hue= "Species", multiple= "stack", palette=palette, edgecolor= 'black') # plot to be created with these arguements.  axes relates to position, x is the feature of the flower,  hue groups them by species, species stacked on oneanother, palette is the color scheme defined above and edge color is black around the bars. 
+    hist.set_xlabel(key + " in cm", fontsize = 14)  # labei=ling and managign size of x axis. 
+    hist.set_ylabel("Frequency", fontsize = 14) # labei=ling and managign size of y axis. 
+    fig.tight_layout() # Setting tight_layout so nothing is crushed. 
+plt.savefig('histogram.png')
 
-
-sct = sns.pairplot(df, hue = 'Species', diag_kind = 'auto', height = 2.2, palette=palette, plot_kws= { 'edgecolor':'black' } )
-plt.suptitle('Comparing Features Across Iris Species',size = 28, weight= "bold")
+# Scatter plot
+sct = sns.pairplot(df, hue = 'Species', diag_kind = 'auto', height = 2.2, palette=palette, plot_kws= { 'edgecolor':'black' }) # Running a pairplot for the scatterplots.  Features are plotted against eachother. Diag_type will plot a line plot where the feature is plotted against itself. 
+plt.suptitle('Comparing Features Across Iris Species',size = 28, weight= "bold") #title are is font adjusted.
 sct._legend.remove() # removing orginal/ default legend as its was being crushed by subplots. #unable to move. 
 plt.legend(bbox_to_anchor=(1.01, 1),borderaxespad=0) # plotting a new legend outside of the axes border. 
 plt.tight_layout()
-
-plt.show() 
+plt.savefig('scatter.png')
