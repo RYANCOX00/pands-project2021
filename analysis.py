@@ -47,7 +47,7 @@ if null_values == False:
 
 # Summarising data
 full_summary_text = ("\n\nA summary of all the Iris species:\n")
-full_summary = df.describe()  # an overview of the Iris data using .describe().  No breakdown of species yet. 
+full_summary = df.describe().round(2)  # an overview of the Iris data using .describe().  No breakdown of species yet. 
 summary.append(full_summary_text) # appending to summary list. (Later to summary file)
 summary.append(full_summary)
 print("\nA summary of all species has been written to the summary file in a single data frame.")
@@ -56,9 +56,9 @@ print("\nA summary of all species has been written to the summary file in a sing
 # Comparing the features across the species
 species_summary_text = "\n\nA summary of each flower features across the different species: \n"
 summary.append(species_summary_text) # Appending a text heading to the summary dataframe to the summary file.
-pd.options.display.max_columns = 999  # Setting the max columns so that the summary of the features output directly under one another. 
-species_summary = (df.groupby('Species').describe())    # Outputing a summary of the features and comparison across the species, 
-summary.append(species_summary)                         # using the groupby() function and the .describe() function.
+pd.options.display.width = 0  # Setting no max columns so that the summary of the features output directly under one another.
+species_summary = (df.groupby('Species').describe().round(2))   # Outputing a summary of the features and comparison across the species, 
+summary.append(species_summary)                                 # using the groupby() function and the .describe() function.
 print("\nA comparison of the features across the species has been written to the summary file. ")
 
 writing_to_summary(summary) # calling the function and pushing to summary file.  
