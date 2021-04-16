@@ -74,10 +74,10 @@ hist_dict = {"Sepal Lenght": (0,0), "Sepal Width" : (0,1), "Petal Lenght": (1,0)
 
 # Histogram
 sns.set(style="darkgrid") # setting the background of the mainplot. 
-fig, axes = plt.subplots(2, 2, figsize=(15, 8), sharey=True) # creating the subplot to be 2x2 and size.  sharey =true keeps the y axix labels the same #may want to remove for easier reading of plot
+fig, axes = plt.subplots(2, 2, figsize=(15, 8), sharey=True) # subplot to be 2x2 and size.  sharey =true keeps the y axix labels the same. 
 fig.suptitle('Iris Features Measurements', fontsize = 28, weight= "bold") #setting the title of the plot/ 
 for key, value in hist_dict.items(): # plots are from a for loop. 
-    hist =sns.histplot(ax=axes[value], x=key, data = df, hue= "Species", multiple= "stack", palette=palette, edgecolor= 'black') # plot to be created with these arguements.  axes relates to position, x is the feature of the flower,  hue groups them by species, species stacked on oneanother, palette is the color scheme defined above and edge color is black around the bars. 
+    hist =sns.histplot(ax=axes[value], x=key, data = df, hue= "Species", multiple= "stack", palette=palette, edgecolor= 'black')  # plot to be created with these arguements.  axes relates to position, x is the feature of the flower,  hue groups them by species, species stacked on oneanother, palette is the color scheme defined above and edge color is black around the bars. 
     hist.set_xlabel(key + " in cm", fontsize = 14)  # labei=ling and managign size of x axis. 
     hist.set_ylabel("Frequency", fontsize = 14) # labei=ling and managign size of y axis. 
     fig.tight_layout() # Setting tight_layout so nothing is crushed. 
