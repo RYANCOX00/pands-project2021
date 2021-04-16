@@ -29,14 +29,14 @@ df.columns = ["Sepal Lenght", "Sepal Width", "Petal Lenght", "Petal Width","Spec
 # Outputting to the user the type of Iris species added to a string. 
 df["Species"] = [i.replace("Iris-", "").capitalize() for i in df["Species"]]
 species = (df['Species'].unique()) 
-species1 = ", ".join(map(str, species)) # joining the contents of the list as a string with ", " as the seperator. 
+species1 = ", ".join(map(str, species)) # joining the contents of the unique list as a string with ", " as the seperator. 
 text = "\nThe species of Iris flower being analysed are: "
 species_output = (text + species1) # adding both strings for output variable.
 summary.append(species_output) 
 print(species_output)
 
 
-#Checking for missing value
+#Checking for missing value  # need to turn this into error handling function.  Output if there is missing data and end the code. 
 null_values = df.isnull().values.any() #Delft Stack
 if null_values == False:
     no_null = "\n\nThere is no missing values in this data set."
@@ -57,8 +57,8 @@ print("\nA summary of all species has been written to the summary file in a sing
 species_summary_text = "\n\nA summary of each flower features across the different species: \n"
 summary.append(species_summary_text) # Appending a text heading to the summary dataframe to the summary file.
 pd.options.display.max_columns = 999  # Setting the max columns so that the summary of the features output directly under one another. 
-species_summary = (df.groupby('Species').describe())  # Outputing a summary of the features and comparison across the species, using the groupby() function and the .describe() function.
-summary.append(species_summary)
+species_summary = (df.groupby('Species').describe())    # Outputing a summary of the features and comparison across the species, 
+summary.append(species_summary)                         # using the groupby() function and the .describe() function.
 print("\nA comparison of the features across the species has been written to the summary file. ")
 
 writing_to_summary(summary) # calling the function and pushing to summary file.  
