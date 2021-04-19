@@ -25,6 +25,16 @@ df = pd.read_csv(irisFile) # changed reading in the file to Pandas. Below variab
 df.columns = ["Sepal Lenght", "Sepal Width", "Petal Lenght", "Petal Width","Species"]
 
 
+#Checking for missing value.  Output if there is now missing data continues, or alerts the user that there is missing data and ends the programme. 
+null_values = df.isnull().values.any() #Delft Stack
+if null_values == False:
+    no_null = "There is no missing values in this data set."
+    print(no_null)
+    summary.append(no_null)  #appending summary data to list for pushing to summary file later. 
+else:
+    print("There is missing data in the dataset. Please review. Quitting programme.\n ")
+    quit()
+
 # Manipulating the list to drop the "Iris-" and capitalize each species. Then finding unique species and saving as a list.
 # Outputting to the user the type of Iris species added to a string. 
 df["Species"] = [i.replace("Iris-", "").capitalize() for i in df["Species"]]
@@ -34,15 +44,6 @@ text = "\nThe species of Iris flower being analysed are: "
 species_output = (text + species1) # adding both strings for output variable.
 summary.append(species_output) 
 print(species_output)
-
-
-#Checking for missing value  # need to turn this into error handling function.  Output if there is missing data and end the code. 
-null_values = df.isnull().values.any() #Delft Stack
-if null_values == False:
-    no_null = "\n\nThere is no missing values in this data set."
-    print(no_null)
-    summary.append(no_null)  #appending summary data to list for pushing to summary file later. 
-
 
 
 # Summarising data

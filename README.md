@@ -57,6 +57,11 @@ I had orginally used the built-in file opener in Python and saved the different 
 
  
 ### Code for manipulating the data 
+Firstly, I ran a check to see if there was any missing data in the dataset. This was done by teling the user that no data was missing from the dataset should that be the case.  In additon the code put in place alerts the user that data is missing from the dataset and exits the programme if this is the case.
+
+![missing data](https://user-images.githubusercontent.com/77641344/115300375-d1432f80-a157-11eb-880e-a53f7a1e28a3.PNG)
+
+
 The data under the Species column then needed to be manipulated so that it was in a more presentable format. The intention was to drop the "Iris-" and capitalise each species under this column. The below code was used to do this.
 
 ![manipulating species](https://user-images.githubusercontent.com/77641344/115043234-31be3c80-9ecc-11eb-9eff-2ffa056e8c38.PNG)
@@ -66,9 +71,6 @@ While working on the species column I took the opportunity to find the unique na
 
 
 ![find unique](https://user-images.githubusercontent.com/77641344/115044314-4a7b2200-9ecd-11eb-82cc-cdb30dee5d9f.PNG)
-
-
-Before moving onto the data exploration, I ran a check to see if there was any missing data in the dataset. This was originally done by simply teling the user that no data was missing from the dataset should that be the case.  However, it was subquently thought that this served no purpose should there be data missing from the data set.  Therefore, the below code was put in place that handles errors if data is missing by stoping the programme and alerting the user. It also tells the user that no data is missing should that be the case.  
 
 
  
