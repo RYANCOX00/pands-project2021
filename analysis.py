@@ -38,7 +38,7 @@ else:       # Otherwise, alert the user that there is missing data and quit the 
 # Manipulating the list to drop the "Iris-" and capitalize each species. Then finding unique species and saving as a list.
 # Outputting to the user the type of Iris species added to a string. 
 df["Species"] = [i.replace("Iris-", "").capitalize() for i in df["Species"]] # Dropping the "Iris-" and capitalising the each species name. REF[7]
-species = (df['Species'].unique())  # Finding unique species' names and saving them as variable. [8]
+species = (df['Species'].unique())  # Finding unique species' names and saving them as variable. REF[8]
 species1 = ", ".join(map(str, species)) # Joining the contents of the unique list as a string with ", " as the seperator. REF[9]
 text = "\nThe species of Iris flower being analysed are: "
 species_output = (text + species1) # Adding both strings for output variable.
@@ -75,7 +75,7 @@ hist_dict = {"Sepal Lenght": (0,0), "Sepal Width" : (0,1), "Petal Lenght": (1,0)
 sns.set(style="darkgrid") # Setting the background of the mainplot. 
 fig, axes = plt.subplots(2, 2, figsize=(15, 8), sharey=True) # Subplot to be 2x2 and size. REF[12]  sharey =true uses a common y axix for the plots. 
 fig.suptitle('Iris Features Measurements', fontsize = 28, weight= "bold") # Setting the title of the plot. 
-for key, value in hist_dict.items(): # Plots are from a for loop so they go on one plot. REF [14]
+for key, value in hist_dict.items(): # Plots are from a for loop so they go on one plot. REF[14]
     hist =sns.histplot(ax=axes[value], x=key, data = df, hue= "Species", multiple= "stack", palette=palette, edgecolor= 'black')  # REF[13][14] Axes relates to position, x is the feature of the flower,  hue groups them by species, species stacked on oneanother, palette is the color scheme defined above and edge color is black around the bars. 
     hist.set_xlabel(key + " in cm", fontsize = 14)  # Labeling and managing size of x axis font. 
     hist.set_ylabel("Frequency", fontsize = 14) # Labeling and managing size of y axis font. 
@@ -85,7 +85,7 @@ plt.savefig('histogram.png')
 # Scatter plot
 sct = sns.pairplot(df, hue = 'Species', diag_kind = 'auto', height = 2.2, palette=palette, plot_kws= { 'edgecolor':'black' }) # REF[15] Running a pairplot for the scatterplots.  Features are plotted against eachother. Diag_type will plot a line plot where the feature is plotted against itself. 
 plt.suptitle('Comparing Features Across Iris Species',size = 28, weight= "bold") # Title are is font adjusted.
-sct._legend.remove() # Removing orginal/ default legend as its was being crushed by subplots. #unable to move. REF[16]
+sct._legend.remove() # Removing orginal/ default legend as its was being crushed by subplots. REF[16]. # I was unable to adjust it without it getting crushed.
 plt.legend(bbox_to_anchor=(1.01, 1),borderaxespad=0) # Plotting a new legend outside of the axes border. 
 plt.tight_layout() # Tight layout will plot within the figure areas cleanly.  
 plt.savefig('scatter.png')

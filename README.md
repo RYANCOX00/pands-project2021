@@ -19,8 +19,9 @@ Image source [1]
 ### What was the intention of the dataset?
 The dataset was used as a multivariate dataset used by Ronald Fisher, a statistician and biologist.  Fisher used the dataset to argue the Linear Discriminant Analysis method in statistics.  This method argues that two or more combinations of features can categorise or separate an object [3]. This was published in his paper *The use of multiple measurements in taxonomic problems in 1936* [4]. 
 <br />
+<br />
 
-![NEW1](https://user-images.githubusercontent.com/77641344/116460055-7fd52780-a85e-11eb-8ddb-da7d943cf0fc.jpeg)
+![NEW1](https://user-images.githubusercontent.com/77641344/116460055-7fd52780-a85e-11eb-8ddb-da7d943cf0fc.jpeg) <br />
 Image source: [1]
 <br />
 <br />
