@@ -9,6 +9,7 @@ This project will explore the Iris Fishers Dataset.
 The Iris Fishers Dataset is a set of measurements of 150 Iris flowers.  The flowers were made up of three different species of Iris flower. A sample of 50 Iris-Setosa, 50 Iris-Versicolor and 50 Iris-Virginica were selected.  The features measured on each sample was the sepal length, sepal width, petal length and petal width.  All measurements in the data set were in centimetres[1].
 
 This dataset was obtained from [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/iris) for this project [2]. 
+<br />
 
 ![NEW2](https://user-images.githubusercontent.com/77641344/116460010-7055de80-a85e-11eb-8277-6a81dac846fa.png)
 Image source [1]
@@ -18,6 +19,7 @@ Image source [1]
 ### What was the intention of the dataset?
 The dataset was used as a multivariate dataset used by Ronald Fisher, a statistician and biologist.  Fisher used the dataset to argue the Linear Discriminant Analysis method in statistics.  This method argues that two or more combinations of features can categorise or separate an object [3]. This was published in his paper *The use of multiple measurements in taxonomic problems in 1936* [4]. 
 <br />
+
 ![NEW1](https://user-images.githubusercontent.com/77641344/116460055-7fd52780-a85e-11eb-8ddb-da7d943cf0fc.jpeg)
 Image source: [1]
 <br />
@@ -61,8 +63,9 @@ To read in the data I used Pandas CSV_read function [5]. This function seperates
 
 ![reading in file](https://user-images.githubusercontent.com/77641344/115040934-df7c1c00-9ec9-11eb-9478-0ef04b1ded1a.PNG)
 <br />
+<br />
 
-I had orginally used the built-in file opener in Python and saved the different species as variable.  This involved subdequently converting each variable to numpy arrays before further breaking them down into variables for each feature.  As identified above, it was decided the best approach was to read the data in though Panda for more effecient code, analysis and plotting. 
+I orginally used the built-in file opener in Python and saved the different species as variable.  This involved subdequently converting each variable to numpy arrays before further breaking them down into variables for each feature.  As identified above, it was decided the best approach was to read the data in though Panda for more effecient code, analysis and plotting. 
 <br />
 <br />
 
@@ -129,7 +132,7 @@ I also aimed to provide a summary of how each feature of the species compared.  
 
 This code produced a dataframe with the 4 features.  The below table was produced from this dataframe. 
 <br />
-  
+<br />
    
 
 **Sepal Lenght**                                      
@@ -184,7 +187,7 @@ An approach was initally taken to use matplotlib and numpy arrays to plot the da
 <br />
 
 
-**Histogram Plot**
+**Histogram Plot** <br />
 The histogram plot is designed by plotting all features as subplots (2x2 axes') [12]. The 4 features and their positions on the histogram are saved as a dict object. Once the parameters were set for the subplots, each feature was plotted using a for loop and the plot was saved outside the for loop.  This ensured that the features were placed on the same plot, rather than on sperate plots with three empety plot spaces.   The code to acheive this is below [13][14]. 
 <br />
 
@@ -195,13 +198,14 @@ The histogram plot is designed by plotting all features as subplots (2x2 axes') 
 
 Below is the output for this code:
 <br />
+<br />
 
 ![histogram](https://user-images.githubusercontent.com/77641344/115080332-782a9000-9efa-11eb-9cb2-a50fcb8ca790.png)
 <br />
 <br />
 
 
-**Scatter Plot**
+**Scatter Plot** <br />
 In relation to the scatter plots, the most efficient way to plot the relationships between each variable to i.e. to achieve Fishers Linear Discriminant Analysis was to use a pairplot [15].  Otherwise, 9 seperate plots would have to be ran.   A pairplot will plot the columns of a dataframe against eachother so that the user can understand how each relationship behaves.  An issue that arose when programming for this plot was that the plots on the right side were crushing the default legend.  In order to workaround this, the default legend had to be removed and a new legend was added to the plot with its position manually adjusted [16].  See the pairplot code below. 
 <br />
 
