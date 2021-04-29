@@ -215,7 +215,7 @@ With species being selected as the hue, we can see how each feautre behaves when
   
 <br />  
    
-    
+     
      
 Below is the output for this code:
 <br />
@@ -226,6 +226,7 @@ Below is the output for this code:
 
 
 # References
+<br />  
 [1]   Y. Cui. (2020) *The Iris Dataset — A Little Bit of History and   Biology* [Online]. Available: https://towardsdatascience.com/the-iris-dataset-a-little-bit-of-history-and-biology-fb4812f5a7b5 
 
 [2]   UCI Machine Learning Repository (1988) *Iris Data Set* [Online]. Available: https://archive.ics.uci.edu/ml/datasets/iris
