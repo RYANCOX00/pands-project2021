@@ -17,7 +17,7 @@ Image source [1]
 <br />
 
 ### What was the intention of the dataset?
-The dataset was used as a multivariate dataset used by Ronald Fisher, a statistician and biologist.  Fisher used the dataset to argue the Linear Discriminant Analysis method in statistics.  This method argues that two or more combinations of features can categorise or separate an object [3]. This was published in his paper *The use of multiple measurements in taxonomic problems in 1936* [4]. 
+The dataset was used as a multivariate dataset used by Ronald Fisher, a statistician and biologist.  Fisher used the dataset to prove the Linear Discriminant Analysis method in statistics.  This method argues that two or more combinations of features can categorise or separate an object [3]. This was published in his paper *The use of multiple measurements in taxonomic problems in 1936* [4]. 
 <br />
 <br />
 
@@ -37,7 +37,7 @@ The Iris Fishers Dataset is well known today.  Many have explored the dataset an
 ## Aim of this project
 This repository will explore the Iris Fishers Dataset using Python.  I will firstly aim to summarise the differences of the features across the three species. A comparative table will be outputted to summarise the key differences in sizes of the species per feature.   
 
-I will then aim to visualise the differences in features by plotting a histogram of each feature with the species as a category. This will show the user the size of each feature and frequency of each species within a particular size range.  
+I will then aim to visualise the differences of the features by plotting a histogram of each with the species as a category. This will show the user the size of each feature and frequency of each specie within a particular size range.  
 
 I will finally aim to compare the relationships between each feature on a scatter plot. This will allow one to see if clusters of species exist. These may or may not distinguish the categories of species as held by the Discriminant Analysis Method.   
 
@@ -60,26 +60,26 @@ Modules that were imported for this exploration and visualisation are:
 # Code development
 ### Reading in the Iris file 
 
-To read in the data I used Pandas CSV_read function [5]. This function seperates data from commas automatically and saves the data in a dataframe.  This main dataframe is saved under the variable *df*. I then immediately renamed the columns to more suitable names that will be used throughout the code: *"Sepal Lenght", "Sepal Width", "Petal Lenght", "Petal Width","Species"*
+To read in the data I used Pandas CSV_read function [5]. This function seperates data from commas automatically and saves the data in a dataframe.  This main dataframe is saved under the variable *df*. I then immediately renamed the columns to more suitable names that will be used throughout the code: *"Sepal Lenght", "Sepal Width", "Petal Lenght", "Petal Width" and "Species"*
 
 ![reading in file](https://user-images.githubusercontent.com/77641344/115040934-df7c1c00-9ec9-11eb-9478-0ef04b1ded1a.PNG)
 <br />
 <br />
 
-I orginally used the built-in file opener in Python and saved the different species as variable.  This involved subdequently converting each variable to numpy arrays before further breaking them down into variables for each feature.  As identified above, it was decided the best approach was to read the data in though Panda for more effecient code, analysis and plotting. 
+I orginally used the built-in file opener in Python and saved the different species as variables.  This subsequently involved converting each variable to a numpy array before further breaking them down into variables for each feature.  As identified above, it was decided the best approach was to read the data in though Panda for more effecient code, analysis and plotting. 
 <br />
 <br />
 
 
  
 ### Manipulating the data 
-Firstly, I ran a check to see if there was any missing values in the dataset [6]. This was done by teling the user that no data was missing from the dataset should that be the case.  In additon the code put in place alerts the user that data is missing from the dataset and exits the programme if this is the case.
+Firstly, I ran a check to see if there was any missing values in the dataset [6]. This was done by teling the user that no data was missing from the dataset should that be the case.  Alternatively, the code put in place alerted the user that data is missing from the dataset before terminating the programme. 
 
 ![missing data](https://user-images.githubusercontent.com/77641344/115300375-d1432f80-a157-11eb-880e-a53f7a1e28a3.PNG)
 <br />
 <br />
 
-The data under the Species column then needed to be manipulated so that it was in a more presentable format. The "Iris-" was replaced by a blank string [7] and capitalise each species under this column. This left the capitalised species name only i.e. Setosa.  The below code was used to do this.
+The data under the Species column then needed to be manipulated so that it was in a more presentable format. The "Iris-" was dropped[7] and each item was capitalise under this column. This left the capitalised species name only e.g. Setosa.  The below code was used to do this.
 
 ![manipulating species](https://user-images.githubusercontent.com/77641344/115043234-31be3c80-9ecc-11eb-9eff-2ffa056e8c38.PNG)
 <br />
@@ -94,21 +94,20 @@ While working on the species column I took the opportunity to find the unique na
 <br />
  
 ### Data exploration
-The intention was to create summary data for the features and the species and write this summary data to a text file called species_summary.txt.  To do this in an efficent way for multiple strings it was decided that the summary data would be appended to a list called *summary* before being written to a text file in one go.  A function was created to write the contents of the *summary* list. This was created in write mode so that the contents are overwritten each time the programme is ran. The contents of the list are added as a for loop to prevent the list to be written to the summary file itself.  
+The intention was to create summary data for the features and the species and write this summary data to a text file called species_summary.txt.  To do this in an efficent way for multiple strings it was decided that the summary data would first be appended to a list called *summary* before being written to a text file in one go.  A function was created to write the contents of the *summary* list to the summary file. This was created in write mode so that the contents are overwritten each time the programme is ran. The contents of the list was added as a for loop to prevent the list itself being written to the summary file.  
 
 ![summary file](https://user-images.githubusercontent.com/77641344/115055924-135f3d80-9eda-11eb-86fd-3e929fe7d4d4.PNG)
 <br />
 <br />
 
-To get an overview of the dataset, I ran the Pandas .describe() function on the *df* dataframe [10].  This gave a breakdown of each feature, identifying the count, min, mean, max measurements, among other summary data.  Note that a break down of species was not sought yet.  Also included in this batch of code was a text to be used as a heading for the summary output that stated: *A summary of all the Iris species*.   Both the heading and the summary dataframe were appended to a list *summary*.  This user was also notified in the terminal that a summary of the dataframe was written to the summary file. 
+To get an overview of the dataset, I ran the Pandas .describe() function on the *df* dataframe [10].  This gave a breakdown of each feature, identifying the count, min, mean, max measurements, among other statistical data.  Note that a break down of species was not sought yet.  Also included in this batch of code was a string to be used as a heading for the summary output that stated: *A summary of all the Iris species*.   Both the heading and the summary dataframe were appended to a list *summary*.  This user was also notified in the terminal that a summary of the dataframe was written to the summary file. 
 
 ![df summary](https://user-images.githubusercontent.com/77641344/115072281-465ffc00-9eef-11eb-9261-4d08a9bc2842.PNG)
 <br />
 <br />
 
 
-This code provided the dataframe table below.  This identified that their is 150 measurement for each of the features. 
-The intention was to provide detail of the variation among the features.  
+This code provided the dataframe table below. The intention was to provide detail of the variation among the features.  
 <br /> 
 
    
@@ -126,7 +125,7 @@ max   |         7.90   |       4.40  |        6.90   |       2.50
 <br />
 
  
-I also aimed to provide a summary of how each feature of the species compared.  The end result provided a breakdown of each feature identifying the count, min, mean, max measurements, among other summary data, comparing each specie of Iris with eachother.  The output provided columns that were truncated.  The solution was to include: pd.options.display.width = 0 [11]. 
+I also aimed to provide a summary of how each feature of the species compared.  The end result provided a breakdown of each feature identifying the count, min, mean, max measurements, among other statistical data, comparing each specie of Iris with eachother.  The output provided columns that were truncated.  The solution was to include: pd.options.display.width = 0 [11]. 
  
 ![feature summary](https://user-images.githubusercontent.com/77641344/115081481-40244c80-9efc-11eb-94ef-cb1db6df486d.PNG)
 <br />
@@ -176,14 +175,14 @@ Virginica  |   50.0  |2.03  |0.27 | 1.4 | 1.8 |2.0 | 2.3 | 2.5
 <br />
 <br />
 
-Initially, the code that was developed provided a summary of the features for each species seperately.  This proved difficult to compare the species against eachother.  It was therfore decided that the *df.groupby('Species').describe()* code was more practical for comparison. 
+Initially, the code that I developed provided a summary of the features for each species seperately.  This proved difficult to compare the species against eachother.  It was therfore decided that the *df.groupby('Species').describe()* code was more practical for comparison. 
 <br />
 <br />
 <br />
  
  
 ### Data visualisation
-An approach was initally taken to use matplotlib and numpy arrays to plot the data for the variables. Although it was possible to create a function with the variable names as arguements, this still required the programme to recall the function and make many seperate plots which was ineffiecent and required a lot of computation.   However, once it was decided to use Pandas dataframe and Seaborn plotting became more efficient.  
+An approach was initally taken to use matplotlib and numpy arrays to plot the data for the variables. Although it was possible to create a function and use the variable names as arguements, it was still required to recall the function many times to make seperate plots which was ineffiecent.   However, once it was decided to use Pandas dataframe and Seaborn, plotting became more efficient.  
 <br />
 <br />
 
@@ -207,7 +206,9 @@ Below is the output for this code:
 
 
 **Scatter Plot** <br />
-In relation to the scatter plots, the most efficient way to plot the relationships between each variable to i.e. to achieve Fishers Linear Discriminant Analysis was to use a pairplot [15].  Otherwise, 9 seperate plots would have to be ran.   A pairplot will plot the columns of a dataframe against eachother so that the user can understand how each relationship behaves.  An issue that arose when programming for this plot was that the plots on the right side were crushing the default legend.  In order to workaround this, the default legend had to be removed and a new legend was added to the plot with its position manually adjusted [16].  See the pairplot code below. 
+In relation to the scatter plots, the most efficient way to plot the relationships between each variable was to use a pairplot [15].  Otherwise, 9 seperate plots would have had to be ran.   A pairplot will plot the columns of a dataframe against eachother with "hue" being the category.  
+
+With species being selected as the hue, we can see how each feautre behaves when plotted against another as per the method in Linear Discriminant Analysis.  One issue that arose when programming for this plot was that the plots on the right side were crushing the default legend.  In order to workaround this, the default legend had to be removed and a new legend was added to the plot with its position manually adjusted [16].  See the pairplot code below. 
 <br />
 
 ![scatter code](https://user-images.githubusercontent.com/77641344/115065686-57f0d600-9ee6-11eb-827a-133159ce6cfa.PNG)
